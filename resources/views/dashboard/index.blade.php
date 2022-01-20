@@ -47,7 +47,7 @@
     <main>
         <div class="flex flex-col md:flex-row h-screen">
             @include('dashboard.navigation')
-            <div id="content" class="bg-gray-100 w-full mt-14 p-4 pb-24 md:pb-5">
+            <div id="content" class="bg-gray-100 w-full mt-20 p-4 pb-24 md:pb-5">
                 @yield('content')
             </div>            
         </div>

@@ -3,7 +3,7 @@
 <section class="container mx-auto p-6 font-mono">
 	<div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
 		@if (!empty($items))
-			<div class="w-full overflow-x-auto">
+		<div class="w-full">
 	      <table class="w-full">
 	        <thead>
 	          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-200 uppercase border-b border-gray-600">
