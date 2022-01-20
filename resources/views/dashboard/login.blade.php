@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.index')
 @section('content')
 <div>
 	<div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-md w-full mx-auto p-6 my-4">

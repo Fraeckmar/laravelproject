@@ -46,7 +46,10 @@
     </header>
     <main>
         <div class="flex flex-col md:flex-row h-screen">
-            @include('dashboard.navigation')
+            @if(Auth::check())
+                @include('dashboard.navigation')
+            @endif
+            @endphp            
             <div id="content" class="bg-gray-100 w-full mt-20 p-4 pb-24 md:pb-5">
                 @yield('content')
             </div>            

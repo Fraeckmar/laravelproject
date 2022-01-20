@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('dashboard.index')
 @section('content')
 <div class="bg-grey-lighter min-h-screen flex flex-col">
 	<div class="container max-w-md mx-auto flex-1 flex flex-col items-center justify-center px-2">
