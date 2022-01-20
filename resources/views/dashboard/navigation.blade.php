@@ -1,6 +1,6 @@
 <nav aria-label="alternative nav">
     <div class="z-10 w-full md:w-48 content-center">
-        <div class="bg-gray-800 shadow-xl md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 h-full content-center md:content-start text-left justify-between">
+        <div class="bg-gray-800 shadow-xl mt-16 md:w-48 md:fixed md:left-0 md:top-0 h-full content-center md:content-start text-left justify-between">
             <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
             	<li class="mr-3 flex-1">
                     <a href="{{ url('dashboard') }}" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-transparent @if(Request::is('dashboard')) border-purple-500 @endif">
