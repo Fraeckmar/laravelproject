@@ -77,14 +77,15 @@
 	
 			{{-- Category --}}
 			<div class="mb-6">
-				<label for="category" class="text-sm font-medium text-gray-900 block dark:text-gray-300">{{ __('Category') }}</label>
-				<input 
-					type="text"
-					name="category" 
-					id="category" 
-					required 
-					class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-					value="{{ $item->category }}"/>
+				<label for="category" class="text-sm font-medium text-gray-900 block dark:text-gray-300 my-2">{{ __('Category') }}</label>
+				<select name="category" class="block border border-grey-light w-full p-3 rounded mb-4">
+					<option value="">{{ __('Choose..') }}</option>
+					@if (!empty($categories))
+						@foreach ( $categories as $category )
+							<option value="{{ $category }}" @if($category == $item->category) selected @endif>{{ ucwords($category) }}</option>
+						@endforeach
+					@endif
+				</select>
 	
 				@error('category')
 					<p class="text-red-500 m-0">{{ $message }}</p>

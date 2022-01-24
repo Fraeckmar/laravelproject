@@ -20,12 +20,13 @@
 	    			<tr class="text-gray-700">
 			            <td class="px-4 py-3 text-ms font-semibold border"> {{ $item['item'] }} </td>
 			            <td class="px-4 py-3 text-xs border"> {{ $item['description'] }} </td>
-			            <td class="px-4 py-3 text-xs border"> {{ $item['price'] }} </td>
+			            <td class="px-4 py-3 text-xs border"> {{ number_format($item['price'], 2) }} </td>
 			            <td class="px-4 py-3 text-sm border"> {{ $item['balance'] }} </td>
 			            <td class="px-4 py-3 text-sm border"> {{ $item['category'] }} </td>
 			            <td class="px-4 py-3 text-sm border">
-			            	<a href="{{ url('items/'.$item["id"].'/edit') }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-blue-500 rounded-md focus:shadow-outline hover:bg-blue-600">Edit</a>
-			            	<a href="{{ url('items/'.$item["id"]) }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-red-500 rounded-md focus:shadow-outline hover:bg-red-600" onclick="event.preventDefault(); console.log('submit'); document.getElementById('delete-item').submit();">Del</a>
+							<a href="{{ url('items/'.$item["id"]) }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-gray-500 rounded-md focus:shadow-outline hover:bg-gray-600">{{ __('View') }}</a>
+			            	<a href="{{ url('items/'.$item["id"].'/edit') }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-blue-500 rounded-md focus:shadow-outline hover:bg-blue-600">{{ __('Edit') }}</a>
+			            	<a href="{{ url('items/'.$item["id"]) }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-red-500 rounded-md focus:shadow-outline hover:bg-red-600" onclick="event.preventDefault(); console.log('submit'); document.getElementById('delete-item').submit();">{{ __('Del') }}</a>
 			            	<form id="delete-item" class="hidden" action="{{ url('items/'.$item['id']) }}" method="POST">
 			            		@csrf			            		
 			            		<input type="hidden" name="_method" value="DELETE">

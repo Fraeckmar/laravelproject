@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Settings;
 use App\Models\Item;
+use App\Models\User;
+use App\Models\ItemBound;
 
 class ItemsController extends Controller
 {
@@ -28,7 +32,7 @@ class ItemsController extends Controller
         if(!Auth::check()){
             return redirect('login');
         }
-        return view('items.add');
+        return view('items.add')->with('categories', array_map('trim', Settings::get('items_category')));
     }
 
     /**
@@ -64,7 +68,21 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('items.show',[
+            'item' => Item::findOrFail($id),
+            'inbounds' => DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
+            ->select('item_bounds.*', 'users.name')
+            ->where('item_bounds.type', '=', 'inbound')
+            ->where('item_bounds.item', '=', $id)
+            ->orderBy('item_bounds.created_at')
+            ->get(),
+            'outbounds' => DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
+            ->select('item_bounds.*', 'users.name')
+            ->where('item_bounds.type', '=', 'outbound')
+            ->where('item_bounds.item', '=', $id)
+            ->orderBy('item_bounds.created_at')
+            ->get()
+        ]);
     }
 
     /**
@@ -78,7 +96,11 @@ class ItemsController extends Controller
         if(!Auth::check()){
             return redirect('login');
         }
-        return view('items.edit', ['item' => Item::find($id)->first()]);
+        $setting = new Settings();
+        return view('items.edit', [
+            'item' => Item::find($id)->first(),
+            'categories' => array_map('trim', $setting->get('items_category'))
+        ]);
     }
 
     /**

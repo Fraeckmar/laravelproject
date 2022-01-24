@@ -47,3 +47,4 @@ Route::get('/inbound', [ItemBoundController::class, 'inbound']);
 Route::get('/outbound', [ItemBoundController::class, 'outbound']);
 // Setting
 Route::get('/settings', [Settings::class, 'page']);
+Route::post('/save-settings', [Settings::class, 'save']);

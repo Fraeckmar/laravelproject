@@ -74,13 +74,14 @@
 			{{-- Category --}}
 			<div class="mb-6">
 				<label for="category" class="text-sm font-medium text-gray-900 block dark:text-gray-300 my-2">{{ __('Category') }}</label>
-				<input 
-					type="text"
-					name="category" 
-					id="category" 
-					required 
-					class="bg-gray-50 border border-gray-300 sm:text-sm rounded-md block w-full p-2.5">
-	
+				<select name="category" class="block border border-grey-light w-full p-3 rounded mb-4">
+					<option value="">{{ __('Choose..') }}</option>
+					@if (!empty($categories))
+						@foreach ( $categories as $category )
+							<option value="{{ $category }}">{{ ucwords($category) }}</option>
+						@endforeach
+					@endif
+				</select>
 				@error('category')
 					<p class="text-red-500 m-0">{{ $message }}</p>
 				@enderror

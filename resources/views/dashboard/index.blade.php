@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ App\Http\Controllers\Settings::get('app_name') }}</title>
 
     {{-- Fav Icon --}}
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
@@ -23,7 +23,12 @@
         <div class="container mx-auto flex justify-between items-center px-6">
             <div>
                 <a href="{{ url('dashboard') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                    <img src="{{ asset('img/logo.png') }}" alt="inventory" class="max-w-[60px]">
+                    @if (empty(App\Http\Controllers\Settings::get('app_logo')))
+                        <img src="{{ asset('img/logo.png') }}" alt="Inventory" class="max-w-[60px]">
+                    @else
+                        <img src="{{ Storage::url('images/').App\Http\Controllers\Settings::get('app_logo') }}" alt="Inventory" class="max-w-[60px]">
+                    @endif
+                    
                 </a>
             </div>
             <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
@@ -49,7 +54,7 @@
             @if(Auth::check())
                 @include('dashboard.navigation')
             @endif           
-            <div id="content" class="bg-gray-100 w-full mt-20 p-4 pb-24 md:pb-5">
+            <div id="content" class="bg-gray-100 w-full mt-2 p-4 pb-24 md:mt-20">
                 @yield('content')
             </div>            
         </div>
