@@ -44,7 +44,7 @@
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">{{ __('Monthly') }}</h2>
-                        <p class="font-bold text-3xl"> {{ Format::price($revenue->daily) }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
+                        <p class="font-bold text-3xl"> {{ Format::price($revenue->monthly) }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
                     </div>
                 </div>
             </div>
