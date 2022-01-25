@@ -17,6 +17,7 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet"> --}}
 </head>
 <body class="dashboard bg-gray-100 h-screen antialiased leading-none font-sans">
     <header class="bg-gray-800 py-4 fixed w-full z-20 top-0">

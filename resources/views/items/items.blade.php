@@ -7,12 +7,13 @@
 	      <table class="w-full">
 	        <thead>
 	          <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-200 uppercase border-b border-gray-600">
-	            <th class="px-4 py-3">Item</th>
-	            <th class="px-4 py-3">Description</th>
-	            <th class="px-4 py-3">Price</th>
-	            <th class="px-4 py-3">Balance</th>
-	            <th class="px-4 py-3">Category</th>
-	            <th class="px-4 py-3">Action</th>
+	            <th class="px-4 py-3">{{ __('Item') }}</th>
+	            <th class="px-4 py-3">{{ __('Description') }}</th>
+	            <th class="px-4 py-3">{{ __('Price') }}</th>
+	            <th class="px-4 py-3">{{ __('Balance') }}</th>
+	            <th class="px-4 py-3">{{ __('Category') }}</th>
+				<th class="px-4 py-3">{{ __('Print') }}</th>
+	            <th class="px-4 py-3">{{ __('Action') }}</th>
 	          </tr>
 	        </thead>
 	        <tbody class="bg-white">
@@ -23,6 +24,7 @@
 			            <td class="px-4 py-3 text-xs border"> {{ number_format($item['price'], 2) }} </td>
 			            <td class="px-4 py-3 text-sm border"> {{ $item['balance'] }} </td>
 			            <td class="px-4 py-3 text-sm border"> {{ $item['category'] }} </td>
+						<td class="px-4 py-3 text-sm border"> <span class="cursor-pointer" title="Print"><i class="fas fa-print fa-2x text-purple-800"></i></span> </td>
 			            <td class="px-4 py-3 text-sm border">
 							<a href="{{ url('items/'.$item["id"]) }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-gray-500 rounded-md focus:shadow-outline hover:bg-gray-600">{{ __('View') }}</a>
 			            	<a href="{{ url('items/'.$item["id"].'/edit') }}" class="py-1 px-2 text-sm text-white transition-colors duration-150 bg-blue-500 rounded-md focus:shadow-outline hover:bg-blue-600">{{ __('Edit') }}</a>

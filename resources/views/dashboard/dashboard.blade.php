@@ -10,7 +10,7 @@
             <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-green-600"><i class="fa fa-coins fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">{{ __('Daily') }}</h2>
@@ -25,11 +25,11 @@
             <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-pink-600"><i class="fa fa-coins fa-2x fa-inverse"></i></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">{{ __('Weekly') }}</h2>
-                        <p class="font-bold text-3xl"> {{ Format::price($revenue->weekly) }} <span class="text-pink-500"><i class="fas fa-exchange-alt"></i></span></p>
+                        <p class="font-bold text-3xl"> {{ Format::price($revenue->weekly) }} <span class="text-pink-500"><i class="fas fa-caret-up"></i></span></p>
                     </div>
                 </div>
             </div>
@@ -40,11 +40,11 @@
             <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-yellow-600"><i class="fa fa-coins fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">{{ __('Monthly') }}</h2>
-                        <p class="font-bold text-3xl"> {{ Format::price($revenue->monthly) }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
+                        <p class="font-bold text-3xl"> {{ Format::price($revenue->daily) }} <span class="text-yellow-600"><i class="fas fa-caret-up"></i></span></p>
                     </div>
                 </div>
             </div>
@@ -55,11 +55,11 @@
             <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-blue-600"><i class="fas fa-coins fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">{{ __('Total Revenue') }}</h2>
-                        <p class="font-bold text-3xl">{{ Format::price($revenue->total) }}</p>
+                        <p class="font-bold text-3xl">{{ Format::price($revenue->total) }} <span class="text-blue-600"><i class="fas fa-caret-up"></i></span></p>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">To Do List</h2>
@@ -85,7 +85,7 @@
             <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-4">
-                        <div class="rounded-full p-5 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-red-600"><i class="fas fa-inbox fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1 text-right md:text-center">
                         <h2 class="font-bold uppercase text-gray-600">Issues</h2>
