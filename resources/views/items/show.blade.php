@@ -54,7 +54,7 @@
                     @empty
                         <tr>
                             <td colspan="5">
-                                <p class="text-md text-center">{{ __('No Inbound found!') }}</p>
+                                <p class="text-md text-center p-3">{{ __('No Inbound found!') }}</p>
                             </td>
                         </tr>
                     @endforelse     
@@ -88,7 +88,7 @@
                     @empty
                         <tr>
                             <td colspan="5">
-                                <p class="text-md text-center">{{ __('No Outbound found!') }}</p>
+                                <p class="text-md text-center p-3">{{ __('No Outbound found!') }}</p>
                             </td>
                         </tr>
                     @endforelse     
