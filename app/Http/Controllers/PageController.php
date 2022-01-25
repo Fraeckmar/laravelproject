@@ -29,7 +29,7 @@ class PageController extends Controller
             (SELECT SUM(w_items.price*w_bounds.qty) FROM item_bounds AS w_bounds INNER JOIN items AS w_items on w_bounds.item = w_items.id WHERE WEEK(w_bounds.created_at) = '".abs(date('W'))."' AND w_bounds.type='outbound') AS weekly,
             (SELECT SUM(d_items.price*d_bounds.qty) FROM item_bounds AS d_bounds INNER JOIN items AS d_items on d_bounds.item = d_items.id WHERE CAST(d_bounds.created_at AS DATE) = CAST('".date('Y-m-d')."' AS DATE) AND d_bounds.type='outbound') AS daily
         "))
-        ->where('item_bounds.type', 'outbound')
+        ->whereRaw("item_bounds.type = 'outbound'")
         ->first();
 
     	return view('dashboard.dashboard', [
