@@ -47,7 +47,7 @@ class Settings extends Controller
     public static function get($key)
     {
         $valueStore = Valuestore::make(storage_path('app/settings.json'));
-        if (in_array($key, ['items_category'])){
+        if (in_array($key, ['items_category']) && !empty($valueStore->get($key))){
             return explode(',', $valueStore->get($key, []));
         }
         return $valueStore->get($key, '');
