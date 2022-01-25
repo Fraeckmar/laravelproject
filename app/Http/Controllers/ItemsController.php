@@ -32,7 +32,8 @@ class ItemsController extends Controller
         if(!Auth::check()){
             return redirect('login');
         }
-        return view('items.add')->with('categories', array_map('trim', Settings::get('items_category')));
+        $categories = !empty(Settings::get('items_category'))? array_map('trim', Settings::get('items_category')) : [];
+        return view('items.add')->with('categories', $categories);
     }
 
     /**
