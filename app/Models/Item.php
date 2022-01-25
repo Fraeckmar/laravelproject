@@ -9,6 +9,8 @@ class Item extends Model
 {
     use HasFactory;
 
+    public $keyType = 'string';
+
     protected $fillable = [
         'item',
         'description',
