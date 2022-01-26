@@ -70,11 +70,11 @@
             <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
                 <div class="flex flex-row items-center">
                     <div class="flex-shrink pr-5">
-                        <div class="rounded-full p-4 bg-indigo-600"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                        <div class="rounded-full p-4 bg-indigo-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                     </div>
                     <div class="flex-1">
-                        <h2 class="font-bold uppercase text-gray-600">To Do List</h2>
-                        <p class="font-bold text-3xl">7 tasks</p>
+                        <h2 class="font-bold uppercase text-gray-600">{{ __("Customers") }}</h2>
+                        <p class="font-bold text-3xl">{{ $customers }}</p>
                     </div>
                 </div>
             </div>

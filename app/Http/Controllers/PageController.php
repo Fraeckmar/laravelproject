@@ -35,8 +35,10 @@ class PageController extends Controller
             //$query = DB::getQueryLog();
             //echo $query[0]['query'];
             //dd($revenue);
+            $customers = User::where('role', 'customer')->get()->count();
             return view('dashboard.dashboard', [
                 'revenue' => $revenue,
+                'customers' => $customers
             ]);
         }
     	return view('customer.dashboard');
