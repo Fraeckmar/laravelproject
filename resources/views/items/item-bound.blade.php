@@ -1,5 +1,8 @@
 @extends('dashboard.index')
 @section('content')
+@php
+	//dd($customers);
+@endphp
 @if(session('success'))
 	<p class="text-center py-4 bg-white shadow-md rounded-lg mx-auto max-w-screen-md w-full">
 		<span class="text-green-600">{{ session('success') }}</span>
@@ -22,7 +25,7 @@
 				<select id="item" name="item" class="block border border-grey-light w-full p-3 rounded mb-4">
 					<option value="">{{ __('Choose..') }}</option>
 					@foreach ($items as $item)
-						<option value="{{ $item['id'] }}">{{ $item['item'] }}</option>
+						<option value="{{ $item->id }}">{{ $item->item }}</option>
 					@endforeach                
 				</select>
 				@error('item')
@@ -42,6 +45,23 @@
 					<p class="text-red-500 m-0">{{ $message }}</p>
 				@enderror
 			</div>
+
+			{{-- Customer --}}
+			@if (!empty($customers))
+				<div class="mb-4">
+					<label for="customer" class="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300">{{ __('Customer') }}</label>
+					<select name="customer" class="block border border-grey-light w-full p-3 rounded mb-4">
+						<option>{{ __('Choose..') }}</option>
+						@foreach ($customers as $customer )
+							<option value="{{ $customer->id }}">{{ $customer->name }}</option>
+						@endforeach					
+					</select>
+
+					@error('customer')
+						<p class="text-red-500 m-0">{{ $message }}</p>
+					@enderror
+				</div>
+			@endif
 	
 			{{-- Remarks --}}
 			<div class="mb-6">

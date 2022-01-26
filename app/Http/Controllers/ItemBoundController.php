@@ -23,20 +23,21 @@ class ItemBoundController extends Controller
 	// Item Inbound
     public function inbound()
 	{
-		$items = Item::all()->toArray();
+		$items = Item::all();
 		return view('items.item-bound', [
 			'items' => $items,
-            'type' => 'inbound'
+            'type' => 'inbound',
 		]);
 	}
 
 	// Item Outbound
 	public function outbound()
 	{
-		$items = Item::all()->toArray();
+		$items = Item::all();
 		return view('items.item-bound', [
 			'items' => $items,
-            'type' => 'outbound'
+            'type' => 'outbound',
+            'customers' => User::where('role', 'customer')->get()
 		]);
 	}
 
@@ -56,13 +57,14 @@ class ItemBoundController extends Controller
         $type = $request->type;
         $remarks = $request->has('remarks')? $request->remarks : '';
         // Save Inbound
-        $inBound = new ItemBound();
-        $inBound->item = $request->item;        
-        $inBound->qty = $request->qty;
-        $inBound->type = $request->type;
-        $inBound->remarks = $remarks;
-        $inBound->updated_by = Auth::id();
-        $inBound->save();
+        $itemBound = new ItemBound();
+        $itemBound->item = $request->item;        
+        $itemBound->qty = $request->qty;
+        $itemBound->type = $request->type;
+        $itemBound->customer = $request->customer;
+        $itemBound->remarks = $remarks;
+        $itemBound->updated_by = Auth::id();
+        $itemBound->save();
 
         // Update Item balance
         $item = Item::find($request->item);

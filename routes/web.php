@@ -39,6 +39,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');;
 Route::post('/logout', [AuthController::class, 'logout']);
 // User
 Route::resource('/user', UserController::class);
+// Customers
+Route::get('/customers', [PageController::class, 'customers']);
 // Items
 Route::resource('/items', ItemsController::class);
 // Inbound - Outbound

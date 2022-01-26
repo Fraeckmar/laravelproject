@@ -69,20 +69,34 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        return view('items.show',[
-            'item' => Item::findOrFail($id),
-            'inbounds' => DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
+        $inbounds = DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
             ->select('item_bounds.*', 'users.name')
             ->where('item_bounds.type', '=', 'inbound')
             ->where('item_bounds.item', '=', $id)
             ->orderBy('item_bounds.created_at')
-            ->get(),
-            'outbounds' => DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
+            ->get();
+
+        $outbounds = DB::table('item_bounds')->leftJoin('users', 'item_bounds.updated_by', '=', 'users.id')
             ->select('item_bounds.*', 'users.name')
             ->where('item_bounds.type', '=', 'outbound')
             ->where('item_bounds.item', '=', $id)
             ->orderBy('item_bounds.created_at')
-            ->get()
+            ->get();
+
+        $total_inbounds = $inbounds->reduce(function($carry, $item){
+            return $carry + $item->qty;
+        }, 0);
+
+        $total_outbounds = $outbounds->reduce(function($carry, $item){
+            return $carry + $item->qty;
+        }, 0);
+
+        return view('items.show',[
+            'item' => Item::findOrFail($id),
+            'inbounds' => $inbounds,            
+            'outbounds' =>  $outbounds,
+            'total_inbounds' => $total_inbounds,
+            'total_outbounds' => $total_outbounds
         ]);
     }
 

@@ -55,7 +55,7 @@
             @if(Auth::check())
                 @include('dashboard.navigation')
             @endif           
-            <div id="content" class="bg-gray-100 w-full mt-2 p-4 pb-24 md:mt-20">
+            <div id="content" class="bg-gray-100 w-full mt-4 p-4 pb-24 md:mt-20">
                 @yield('content')
             </div>            
         </div>

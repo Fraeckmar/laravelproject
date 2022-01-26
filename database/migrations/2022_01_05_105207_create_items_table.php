@@ -20,7 +20,6 @@ class CreateItemsTable extends Migration
             $table->decimal('price');
             $table->integer('balance');
             $table->string('category');            
-            $table->string('history')->nullable();
             $table->timestamps();
         });
     }

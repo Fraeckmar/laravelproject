@@ -45,7 +45,7 @@
                 <tbody class="bg-white">
                     @forelse ($inbounds as $inbound)
                         <tr class="text-gray-700">
-                            <td class="px-4 py-3 text-sm border font-semibold"> {{ date('Y-m-d', strtotime($inbound->created_at)) }} | {{ date('H:i', strtotime($inbound->created_at)) }} </td>
+                            <td class="px-4 py-3 text-sm border font-semibold"> {{ $inbound->created_at }} </td>
                             <td class="px-4 py-3 text-sm border uppercase"> {{ $inbound->type }} </td>
                             <td class="px-4 py-3 text-sm border"> {{ $inbound->qty }} </td>
                             <td class="px-4 py-3 text-sm border"> {{ $inbound->name }} </td>
@@ -96,5 +96,16 @@
             </table>
         </div>
 	</div>
+    {{-- Totals --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3">
+        <div class=""></div>
+        <div class=""></div>
+        <div class="bg-white round-lg shadow-lg p-4">
+            <p class="font-bold text-xl">{{ __('TOTAL') }}</p>
+            <p class="font-semibold text-lg py-2">{{ __('Balance') }}: {{ $item->balance }} {{ Format::unit('pcs') }}</p>
+            <p class="font-semibold text-lg py-2">{{ __('Total Inbound') }}: {{ $total_inbounds }} {{ Format::unit('pcs') }}</p>
+            <p class="font-semibold text-lg py-2">{{ __('Total Outbound') }}: {{ $total_outbounds }} {{ Format::unit('pcs') }}</p>
+        </div>
+    </div>
 </section>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class PageController extends Controller
 {
@@ -20,20 +21,42 @@ class PageController extends Controller
     		return redirect('/login');
     	}
         //DB::enableQueryLog();
-        $revenue = DB::table('item_bounds')
-        ->leftJoin('items', 'item_bounds.item', '=', 'items.id')
-        ->select(DB::raw("
-            SUM(items.price*item_bounds.qty) AS total,
-            (SELECT SUM(m_items.price*m_bounds.qty) FROM item_bounds AS m_bounds INNER JOIN items AS m_items on m_bounds.item = m_items.id WHERE extract(month from m_bounds.created_at) = '".date('m')."' AND m_bounds.type='outbound') AS monthly,
-            (SELECT SUM(w_items.price*w_bounds.qty) FROM item_bounds AS w_bounds INNER JOIN items AS w_items on w_bounds.item = w_items.id WHERE extract(week from w_bounds.created_at) = '".abs(date('W'))."' AND w_bounds.type='outbound') AS weekly,
-            (SELECT SUM(d_items.price*d_bounds.qty) FROM item_bounds AS d_bounds INNER JOIN items AS d_items on d_bounds.item = d_items.id WHERE CAST(d_bounds.created_at AS DATE) = CAST('".date('Y-m-d')."' AS DATE) AND d_bounds.type='outbound') AS daily
-        "))
-        ->whereRaw("item_bounds.type = 'outbound'")
-        ->first();
-        //$query = DB::getQueryLog();
-        //echo $query[0]['query'];
-    	return view('dashboard.dashboard', [
-            'revenue' => $revenue,
+        if(in_array(Auth::user()->role, ['administrator', 'staff'])){
+            $revenue = DB::table('item_bounds')
+            ->leftJoin('items', 'item_bounds.item', '=', 'items.id')
+            ->select(DB::raw("
+                SUM(items.price*item_bounds.qty) AS total,
+                (SELECT SUM(m_items.price*m_bounds.qty) FROM item_bounds AS m_bounds INNER JOIN items AS m_items on m_bounds.item = m_items.id WHERE extract(month from m_bounds.created_at) = '".date('m')."' AND m_bounds.type='outbound') AS monthly,
+                (SELECT SUM(w_items.price*w_bounds.qty) FROM item_bounds AS w_bounds INNER JOIN items AS w_items on w_bounds.item = w_items.id WHERE extract(week from w_bounds.created_at) = '".abs(date('W'))."' AND w_bounds.type='outbound') AS weekly,
+                (SELECT SUM(d_items.price*d_bounds.qty) FROM item_bounds AS d_bounds INNER JOIN items AS d_items on d_bounds.item = d_items.id WHERE CAST(d_bounds.created_at AS DATE) = CAST('".date('Y-m-d')."' AS DATE) AND d_bounds.type='outbound') AS daily
+            "))
+            ->whereRaw("item_bounds.type = 'outbound'")
+            ->first();
+            //$query = DB::getQueryLog();
+            //echo $query[0]['query'];
+            //dd($revenue);
+            return view('dashboard.dashboard', [
+                'revenue' => $revenue,
+            ]);
+        }
+    	return view('customer.dashboard');
+    }
+
+    // Customers
+    public function customers()
+    {
+        $customers = DB::table('users')
+        ->leftJoin("item_bounds", "users.id", "=", "item_bounds.item")
+        ->selectRaw("
+            users.*,
+            (SELECT SUM(item_bounds.qty) FROM item_bounds WHERE item_bounds.customer = users.id AND item_bounds.type = 'outbound') AS total_items,
+            (SELECT SUM(item_bounds.qty * items.price) as total FROM item_bounds INNER JOIN items ON item_bounds.item = items.id  WHERE item_bounds.customer = users.id AND item_bounds.type = 'outbound') AS total_amount
+        ")
+        ->where('users.role', 'customer')
+        ->get()
+        ->toArray();
+        return view('customer.list', [
+            'customers' => $customers
         ]);
     }
 

@@ -18,6 +18,7 @@ class CreateItemBoundsTable extends Migration
             $table->integer('item');
             $table->integer('qty');
             $table->string('type');
+            $table->integer('customer')->nullable();
             $table->string('remarks')->nullable();
             $table->integer('updated_by');
             $table->timestamps();
