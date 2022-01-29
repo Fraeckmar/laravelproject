@@ -137,3 +137,6 @@ foreach( $d_arr as $idx => $str ){
     }
     echo "* ".str_pad($str, $arr_count, '_', STR_PAD_RIGHT)." *<br/>";
 }
+echo '<pre>';
+print_r();
+echo '</pre>';
